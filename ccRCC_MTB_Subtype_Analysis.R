@@ -243,7 +243,7 @@ library(survival)
 res.cut <- surv_cutpoint(annCol, time = "Time", 
                          event = "Status", 
                          variables ="MTB_Score", 
-                         minprop = 0.3) #默认组内sample不能低于30%
+                         minprop = 0.3) 
 res.cat <- surv_categorize(res.cut)
 table(res.cat$MTB_Score)
 
@@ -278,16 +278,16 @@ p <- ggsurvplot(fit               = fit,
                 xlim              = c(0,100),
                 break.time.by     = 20,
                 legend.title      = "MTB_Score",
-                pval              = FALSE, # 不计算p值，改为手动添加
+                pval              = FALSE,
                 surv.median.line  = "hv",
                 xlab              = "Time (month)",
                 ylab              = "Survival probability",
                 risk.table.y.text = FALSE)
-p.lab <- paste0("Log rank test P", # p值文本
+p.lab <- paste0("Log rank test P", 
                 ifelse(p.val < 0.001, " < 0.001",
                        paste0(" = ",round(p.val, 3))))
 
-p$plot <- p$plot + annotate("text", # 手动添加例文样式的p值
+p$plot <- p$plot + annotate("text", 
                             x = 50, 
                             y = 0.55,
                             hjust = 0,
